@@ -1,0 +1,1832 @@
+{
+	"info": {
+		"_postman_id": "decbddb3-e109-4a25-92b5-c1ff6b7e7b49",
+		"name": "sekere_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26935346"
+	},
+	"item": [
+		{
+			"name": "get token for user 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"jwt1\", pm.response.json()[\"id_token\"]);",
+							"",
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"grant_type\": \"password\",\n    \"username\": \"beautiful@day.com\",\n    \"password\": \"Watermelon123\",\n    \"client_id\": \"zLauUH4wKJkyTpSxnIlCcWVa9qHp5Y4c\",\n    \"client_secret\": \"ynwcUrFRp8xPMngVhBCzMjEsscvIOshGfqluKxhUMJOypP8nhSQKrGvNgY00G5Ig\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hello-summer.us.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"hello-summer",
+						"us",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get token for user 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"jwt2\", pm.response.json()[\"id_token\"]);",
+							"",
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"grant_type\": \"password\",\n    \"username\": \"lovely@day.com\",\n    \"password\": \"Yesil123\",\n    \"client_id\": \"zLauUH4wKJkyTpSxnIlCcWVa9qHp5Y4c\",\n    \"client_secret\": \"ynwcUrFRp8xPMngVhBCzMjEsscvIOshGfqluKxhUMJOypP8nhSQKrGvNgY00G5Ig\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hello-summer.us.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"hello-summer",
+						"us",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boats get - 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loads get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat post - 201 - user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"    //Check for 201 status code",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.environment.set(\"user_id1\", pm.response.json()[\"owner\"]);",
+							"",
+							"pm.environment.set(\"boat_id\", pm.response.json()[\"id\"]);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"token\", pm.environment.get(\"jwt1\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n \"name\": \"sure\",       \n \"type\": \"yat\",       \n \"length\": 28,              \n \"public\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat post - 201 user2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"    //Check for 201 status code",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.environment.set(\"user_id2\", pm.response.json()[\"owner\"]);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"token\", pm.environment.get(\"jwt1\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n \"name\": \"ok\",       \n \"type\": \"yat\",       \n \"length\": 28,              \n \"public\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a load post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"   //Check if status code is 201",
+							"   pm.response.to.have.status(201);",
+							"});",
+							"pm.environment.set(\"load_id\", pm.response.json()[\"id\"]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"volume\": 25,\n  \"item\": \"oranges\",\n  \"creation_date\": \"10/18/2021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat get - 403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    //Check for 403 status code",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/5632499082330112",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"5632499082330112"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat get - 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    //Check for 406 status code",
+							"    pm.response.to.have.status(406);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/atom+xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/5632499082330112",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"5632499082330112"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat get - user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat get - missing jwt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"   //Check for appropriate 401 status code",
+							"   pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat get - invalid jwt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"   //Check for appropriate 401 status code",
+							"   pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Inc0M2s5Zjl5emRfcmIxMUZXTDFJQiJ9.eyJuaWNrbmFtZSI6ImJlYXVWZ1bCIsIm5hbWUiOiJiZWF1dGlmdWxAZGF5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat get user2 cannot read",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"   //Check for appropriate 403 status code",
+							"   pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a load get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads/4789736740749312",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads",
+						"4789736740749312"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat post - 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    //Check for 405 status code",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n \"name\": \"sevgi\",       \n \"type\": \"yat\",       \n \"length\": 28,              \n \"public\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"name\": \"heyyy\",\n    \"type\": \"Catamaran\",\n    \"length\": 67,\n    \"public\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat put user2 cannot edit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"   //Check for appropriate 403 status code",
+							"   pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"name\": \"heyyy\",\n    \"type\": \"Catamaran\",\n    \"length\": 67,\n    \"public\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat patch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n    \"type\": \"Catamaran\",\n    \"length\": 67\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat patch user2 cannot edit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"   //Check for appropriate 403 status code",
+							"   pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n    \"type\": \"Catamaran\",\n    \"length\": 67\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a load put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"volume\": 45,\n    \"item\": \"boxes\",\n    \"creation_date\": \"10/18/2021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads/{{load_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads",
+						"{{load_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a load patch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"volume\": 45\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads/{{load_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads",
+						"{{load_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat delete - user2 cannot delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 no content\", function () {",
+							"    //Check for appropriate 403 code",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat delete - 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a load delete  - 403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 forbidden\", function () {",
+							"    //Check for appropriate 403 status code",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads/56440047628451",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads",
+						"56440047628451"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a load delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"   //Check for appropriate 204 status code",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads/{{load_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads",
+						"{{load_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get owner's boats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/owners/{{user_id1}}/boats",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"owners",
+						"{{user_id1}}",
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all owners",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/owners",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"owners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post owner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"   //Check for appropriate 201 status code",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"owner_id\": \"auth0|646d33e34467e7166eb935b1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/owners",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"owners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "no auth - 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 unauthorized\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n \"name\": \"sevgi\",       \n \"type\": \"yat\",       \n \"length\": 28,              \n \"public\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a boat post - 201 - user1 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"    //Check for 201 status code",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.environment.set(\"user_id1\", pm.response.json()[\"owner\"]);",
+							"",
+							"pm.environment.set(\"boat_id\", pm.response.json()[\"id\"]);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"token\", pm.environment.get(\"jwt1\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n \"name\": \"sure\",       \n \"type\": \"yat\",       \n \"length\": 28,              \n \"public\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a load post Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"   //Check if status code is 201",
+							"   pm.response.to.have.status(201);",
+							"});",
+							"pm.environment.set(\"load_id\", pm.response.json()[\"id\"]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"volume\": 25,\n  \"item\": \"oranges\",\n  \"creation_date\": \"10/18/2021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "no relationship load-boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Confirm to no relationship between load-boat\", function () {",
+							"    pm.expect(pm.environment.get(\"boat_id\")).not.equal(pm.response.json().carrier);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads/{{load_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads",
+						"{{load_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assign load to boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"   //Check for appropriate 204 status code",
+							"   pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}/loads/{{load_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}",
+						"loads",
+						"{{load_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify  load-boat relationship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"   //Check for appropriate 200 status code",
+							"   pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Confirm to no relationship between load-boat\", function () {",
+							"    pm.expect(pm.environment.get(\"boat_id\")).to.equal(pm.response.json().carrier['id']);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/loads/{{load_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"loads",
+						"{{load_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete load to boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"   //Check for appropriate 204 status code",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}/loads/{{load_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}",
+						"loads",
+						"{{load_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "already delete load to boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"   //Check for appropriate 204 status code",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://cs493portfolio-389502.wl.r.appspot.com/boats/{{boat_id}}/loads/{{load_id}}",
+					"protocol": "https",
+					"host": [
+						"cs493portfolio-389502",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}",
+						"loads",
+						"{{load_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
